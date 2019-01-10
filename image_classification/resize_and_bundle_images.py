@@ -6,8 +6,8 @@ Resize all jpg/png images to the same size, create index.csv file and create
 a zip bundle compatible for import into the Peltarion platform.
 
 Assumes input images are stored under
-input_path/class_1/*.jpg/png
-input_path/class_2/*.jpg/png
+input_path/class_1/*.[jpg|png]
+input_path/class_2/*.[jpg|png]
 ...
 where class_1, class_2, etc are the names of the different classes
 
