@@ -6,11 +6,11 @@ python solar_preprocess.py [<option>=True,False,...] {<your_path>/elpv-dataset}
 `\
 The preprocessed dataset file, preprocessed.zip, will be created in the same folder as the dataset.\
 Options:\
---rotate Adds duplicate images rotated by 90 degrees\
+--rotate Adds duplicated images rotated by 90 degrees\
 --stratify_on_type Stratifies subsets on both module type and defect probability\
 --image_as_np Converts images to NPY\
 --image_as_vgg19 Converts images to NPY and normalizes for VGG-19\
---balance Duplicates 100% defects (x2)
+--balance Upsamples 100% defects (x2)
 
 # Analysis of the deployed model
 1. Note the URL and token in the Deployment view
