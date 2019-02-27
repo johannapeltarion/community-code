@@ -16,7 +16,7 @@ Options:\
 1. Note the URL and token in the Deployment view
 2. Run solar_analysis.py:  
 `
-python solar_analysis.py {<your_path>/elpv-dataset} {url} {token}
+python solar_analysis.py {<dataset_path>} {url} {token}
 `  
 The generated CSV file will contain the actual and predicted values for each image in the validation subset. You may use this data for analysis of the model in notebooks etc.\
 \
