@@ -1,5 +1,5 @@
 # Preparing the dataset
-1. Download the [dataset](https://github.com/zae-bayern/elpv-dataset).
+1. Download the dataset.
 2. Run solar_preprocess.py:  
 `
 python solar_preprocess.py [<option>=True,False,...] {<your_path>/elpv-dataset}
