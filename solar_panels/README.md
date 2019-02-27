@@ -13,6 +13,7 @@ Options:\
 --image_as_np Converts images to NPY\
 --image_as_vgg19 Converts images to NPY and normalizes for VGG-19\
 --balance Upsamples 100% defects (x2)
+--target_size Sets image size (default: 300 px)
 
 # Analysis of the deployed model
 1. Note the URL and token in the Deployment view
