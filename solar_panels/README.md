@@ -12,7 +12,7 @@ Options:\
 --stratify_on_type Stratifies subsets on both module type and defect probability\
 --image_as_np Converts images to NPY\
 --image_as_vgg19 Converts images to NPY and normalizes for VGG-19\
---balance Upsamples 100% defects (x2)
+--balance Upsamples 100% defects (x2)\
 --target_size Sets image size (default: 300 px)
 
 # Analysis of the deployed model
