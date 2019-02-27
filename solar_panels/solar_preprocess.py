@@ -42,28 +42,32 @@ def get_csv(index_source_file_path):
                        header = None,
                        names=["image", "prob", "type"])
 
-def convert_to_rgb(df, root_dir, image_target_dir):
+def convert_to_rgb(df, root_dir, image_target_dir, target_size):
     for index, row in df.iterrows():
         image_source_path = os.path.join(root_dir, row['image'])
         rgb_image = cv2.imread(image_source_path)
+        if target_size != 300:
+            rgb_image = cv2.resize(rgb_image, (target_size, target_size))
         image_target_path = os.path.join(image_target_dir, row['image'].split('/')[1])
         assert(cv2.imwrite(image_target_path, rgb_image) == True)
     print('Converted images to RGB...')
 
-def convert_to_npy(df, root_dir, image_target_dir):
+def convert_to_npy(df, root_dir, image_target_dir, target_size):
     for index, row in df.iterrows():
         image_source_path = os.path.join(root_dir, row['image'])
         rgb_image = cv2.imread(image_source_path)
+        if target_size != 300:
+            rgb_image = cv2.resize(rgb_image, (target_size, target_size))
         np_data = np.array(rgb_image, dtype='f4', order='C')
         np_data_target_path = os.path.join(image_target_dir, row['image'].split('/')[1])
         np_data_target_path = np_data_target_path.replace('.png', '')
         np.save(np_data_target_path + '.npy', np_data)
     print('Converted images to NumPy...')
 
-def convert_to_npy_vgg19(df, root_dir, image_target_dir):
+def convert_to_npy_vgg19(df, root_dir, image_target_dir, target_size):
     for index, row in df.iterrows():
         image_source_path = os.path.join(root_dir, row['image'])
-        image = load_img(image_source_path, target_size=(300, 300))
+        image = load_img(image_source_path, target_size=(target_size, target_size))
         numpy_image = img_to_array(image)
         image_batch = np.expand_dims(numpy_image, axis=0)
         np_data = vgg19.preprocess_input(image_batch.copy())
@@ -127,7 +131,8 @@ def run(root_dir,
         stratify_on_type=False,
         image_as_np=False,
         image_as_vgg19=True,
-        balance=False):
+        balance=False,
+        target_size=300):
     archive_base_dir = os.path.join(root_dir, 'preprocessed')
     image_target_dir = os.path.join(root_dir, 'preprocessed/images')
     index_source_file_path = os.path.join(root_dir, 'labels.csv')
@@ -136,13 +141,13 @@ def run(root_dir,
     remove_old_output(index_target_file_path, image_target_dir)
     df = get_csv(index_source_file_path)
     if image_as_vgg19 == True:
-        convert_to_npy_vgg19(df, root_dir, image_target_dir)
+        convert_to_npy_vgg19(df, root_dir, image_target_dir, target_size)
         df['image'] = df['image'].str.replace('.png', '.npy')
     elif image_as_np == True:
-        convert_to_npy(df, root_dir, image_target_dir)
+        convert_to_npy(df, root_dir, image_target_dir, target_size)
         df['image'] = df['image'].str.replace('.png', '.npy')
     else:
-        convert_to_rgb(df, root_dir, image_target_dir)
+        convert_to_rgb(df, root_dir, image_target_dir, target_size)
     df = create_subsets(df, stratify_on_type)
     if rotate == True:
         df = add_rotated_samples(df, root_dir, image_target_dir)
