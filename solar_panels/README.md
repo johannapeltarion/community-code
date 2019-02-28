@@ -1,4 +1,4 @@
-Follow the instructions below to preprocess the dataset for the "Predicitive maintenance of solar panels" training example. For further information about the dataset, see the zae-bayern/elpv-dataset repository.
+Follow the instructions below to preprocess the dataset for the "Predicitive maintenance of solar panels" training example. For further information about the dataset, see the zae-bayern/elpv-dataset repository. Please note that the data set is subject to separate third party license terms, please see disclaimer below.
 
 # Preparing the dataset
 1. Download the dataset.
