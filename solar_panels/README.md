@@ -17,11 +17,11 @@ Options:\
 
 # Analysis of the deployed model
 1. Note the URL and token in the Deployment view
-2. Run solar_analysis.py:  
+2. Run solar_visualize.ipynb:  
 `
-python solar_analysis.py {<dataset_path>} {url} {token}
+jupyter notebook solar_analysis.py 
 `  
-The generated CSV file will contain the actual and predicted values for each image in the validation subset. You may use this data for analysis of the model in notebooks etc.\
+3. Set the dataset path, URL and token in the notebook
 \
 \
 \
